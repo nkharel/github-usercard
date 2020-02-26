@@ -3,18 +3,15 @@
            https://api.github.com/users/<your name>
 */
 
-const cards = document.querySelector('.cards');
-
-axios.get('https://api.github.com/users/nkharel')
-  //  .then((response) => { 
-  //   response.data.message.forEach((gitUrl) => {
-  //     let newGitCard = GitCard(gitUrl);
-  //     cards.appendChild(newGitCard)
-  //   })
-  // })
-  // .catch((err) => { 
-  //   console.log(err) 
-  // })
+axios.get(`https://api.github.com/users/nkharel`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    return(err)
+  })
+  
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -38,6 +35,56 @@ axios.get('https://api.github.com/users/nkharel')
           user, and adding that card to the DOM.
 */
 
+axios.get(`https://api.github.com/users/justsml`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    return(err)
+  })
+  
+
+axios.get(`https://api.github.com/users/luishrd`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    return(err)
+  })
+  
+
+axios.get(`https://api.github.com/users/tetondan`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    return(err)
+  })
+  
+
+axios.get(`https://api.github.com/users/dustinmyers`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    return(err)
+  })
+  
+
+axios.get(`https://api.github.com/users/bigknell`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    return(err)
+  })
+  
+
 const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
@@ -59,52 +106,54 @@ const followersArray = [];
 </div>
 
 */
-function GitCard(gitUrl) {
-const newCard = document.createElement("div");
-  newCard.classList.add("card");
+
+createCard = (cardInfo) => {
+  console.log(cardInfo.avatar_url)
+  card = document.createElement('div')
+  cardImg = document.createElement('img')
+  cardInner = document.createElement('div')
+  cardHeader = document.createElement('h3')
+  cardUsername = document.createElement('p')
+  cardLocation = document.createElement('p')
+  cardProfile = document.createElement('p')
+  cardUrl = document.createElement('a')
+  cardFollowers = document.createElement('p')
+  cardFollowing = document.createElement('p')
+  cardBio = document.createElement('p')
+
+  cardInner.appendChild(cardHeader)
+  cardInner.appendChild(cardUsername)
+  cardInner.appendChild(cardLocation)
+  cardInner.appendChild(cardProfile)
+  cardInner.appendChild(cardFollowers)
+  cardInner.appendChild(cardFollowers)
+  cardInner.appendChild(cardFollowing)
+  cardInner.appendChild(cardBio)
+  card.appendChild(cardImg)
+  card.appendChild(cardInner)
+
+  cardHeader.textContent = cardInfo.name
+  console.log(cardInfo.name)
+  cardUsername.textContent = cardInfo.login
+  cardLocation.textContent = `Location: ${cardInfo.location}`
+  cardProfile.textContent = `Profile: `
+  cardProfile.appendChild(cardUrl)
+  cardUrl.textContent = cardInfo.html_url
+  cardFollowers.textContent = `Followers: ${cardInfo.followers}`
+  cardFollowing.textContent = `Following: ${cardInfo.following}`
+  cardBio.textContent = `Bio: ${cardInfo.bio}`
   
-  const newImage = document.createElement("img");
-  newImage.src = "";
+  cardImg.setAttribute('src', cardInfo.avatar_url)
+  cardImg.setAttribute('alt', `${cardInfo.name}'s photo`)
+  cardUrl.setAttribute('href', cardInfo.html_url)
 
-  const cardInfo = document.createElement("div");
-  cardInfo.classList.add("card-info");
-  
-  const hName = document.createElement("h3");
-  hName.classList.add("name")
-  hName.textContent = "users name";
+  card.classList.add('card')
+  cardInner.classList.add('card-info')
+  cardHeader.classList.add('name')
+  cardUsername.classList.add('username')
 
-  const uName = document.createElement("p")
-  uName.classList.add("username")
-  uName.textContent = "users user name";
-
-  const Location = document.createElement("p");
-  Location.textContent = "users location";
-
-  const Profile = document.createElement("p");
-  Profile.textContent = "<a> </a>";
-
-  const Followers = document.createElement("p");
-  Followers.textContent = "";
-
-  const Following = document.createElement("p");
-  Following.textContent = "";
-
-  const Bio = document.createElement("p");
-  Bio.textContent = "";
-  newCard.appendChild(newImage);
-  newCard.appendChild(cardInfo);
-  cardInfo.appendChild(hName);
-  cardInfo.appendChild(uName);
-  cardInfo.appendChild(Location);
-  cardInfo.appendChild(Profile);
-  cardInfo.appendChild(Followers);
-  cardInfo.appendChild(Following);
-  cardInfo.appendChild(Bio);
-
-  return newCard;
-
-  console.log(newCard);
-
+  const cards = document.querySelector('.cards')
+  cards.appendChild(card)
 }
 
 
@@ -115,3 +164,4 @@ const newCard = document.createElement("div");
   luishrd
   bigknell
 */
+
