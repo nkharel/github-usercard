@@ -3,6 +3,20 @@
            https://api.github.com/users/<your name>
 */
 
+const cards = document.querySelector('.cards');
+
+axios.get('https://api.github.com/users/nkharel')
+  //  .then((response) => { 
+  //   response.data.message.forEach((gitUrl) => {
+  //     let newGitCard = GitCard(gitUrl);
+  //     cards.appendChild(newGitCard)
+  //   })
+  // })
+  // .catch((err) => { 
+  //   console.log(err) 
+  // })
+
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -45,6 +59,54 @@ const followersArray = [];
 </div>
 
 */
+function GitCard(gitUrl) {
+const newCard = document.createElement("div");
+  newCard.classList.add("card");
+  
+  const newImage = document.createElement("img");
+  newImage.src = "";
+
+  const cardInfo = document.createElement("div");
+  cardInfo.classList.add("card-info");
+  
+  const hName = document.createElement("h3");
+  hName.classList.add("name")
+  hName.textContent = "users name";
+
+  const uName = document.createElement("p")
+  uName.classList.add("username")
+  uName.textContent = "users user name";
+
+  const Location = document.createElement("p");
+  Location.textContent = "users location";
+
+  const Profile = document.createElement("p");
+  Profile.textContent = "<a> </a>";
+
+  const Followers = document.createElement("p");
+  Followers.textContent = "";
+
+  const Following = document.createElement("p");
+  Following.textContent = "";
+
+  const Bio = document.createElement("p");
+  Bio.textContent = "";
+  newCard.appendChild(newImage);
+  newCard.appendChild(cardInfo);
+  cardInfo.appendChild(hName);
+  cardInfo.appendChild(uName);
+  cardInfo.appendChild(Location);
+  cardInfo.appendChild(Profile);
+  cardInfo.appendChild(Followers);
+  cardInfo.appendChild(Following);
+  cardInfo.appendChild(Bio);
+
+  return newCard;
+
+  console.log(newCard);
+
+}
+
 
 /* List of LS Instructors Github username's: 
   tetondan
