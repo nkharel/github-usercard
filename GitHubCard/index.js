@@ -108,7 +108,6 @@ const followersArray = [];
 */
 
 createCard = (cardInfo) => {
-  console.log(cardInfo.avatar_url)
   card = document.createElement('div')
   cardImg = document.createElement('img')
   cardInner = document.createElement('div')
